@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -27,7 +28,7 @@ public class Loader
 
 		try
 		{
-			_scene = new Scene(_loader.load());
+			_scene = new Scene((Parent) _loader.load());
 		} catch (IOException e)
 		{
 			e.printStackTrace();
