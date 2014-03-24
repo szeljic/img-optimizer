@@ -8,7 +8,7 @@
 	<name>PNG Optimizer</name>
 
 	<packaging>jar</packaging>
-	<version>2.0.0</version>
+	<version>${v.version}</version>
 
 	<organization>
 		<name>zeljic.com</name>
@@ -20,10 +20,12 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<v.mainclass>com.zeljic.pngoptimizer.Boot</v.mainclass>
+		<v.projectname>PNG Optimizer</v.projectname>
+		<v.version>1.0.0</v.version>
 	</properties>
 
 	<build>
-		<finalName>PNG Optimizer</finalName>
+		<finalName>${v.projectname}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
