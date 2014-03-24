@@ -1,9 +1,9 @@
 package com.zeljic.pngoptimizer;
 
-import com.zeljic.pngoptimizer.uil.Loader;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import com.zeljic.pngoptimizer.uil.Loader;
 
 public class Boot extends Application
 {
