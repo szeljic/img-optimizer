@@ -5,19 +5,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
+<AnchorPane fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
 <children><VBox layoutX="130.0" layoutY="84.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-<children><TitledPane collapsible="false" minHeight="-Infinity" text="Selection Type" VBox.vgrow="NEVER">
-<content><HBox spacing="8.0">
+<children><TitledPane collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
+<content><HBox alignment="CENTER_LEFT" minHeight="-Infinity" spacing="8.0">
 <children><RadioButton fx:id="rbTypeFiles" mnemonicParsing="false" selected="true" text="Files">
 <toggleGroup>
-<ToggleGroup fx:id="type_group" />
-</toggleGroup></RadioButton><RadioButton fx:id="rbTypeDirectory" mnemonicParsing="false" text="Directory" toggleGroup="$type_group" />
-</children></HBox>
-</content>
-</TitledPane><TitledPane collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
-<content><HBox minHeight="-Infinity" spacing="8.0">
-<children><TextField fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS" /><Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
+<ToggleGroup />
+</toggleGroup>
+<HBox.margin>
+<Insets />
+</HBox.margin>
+</RadioButton><RadioButton fx:id="rbTypeDirectory" mnemonicParsing="false" text="Directory" toggleGroup="$type_group">
+<HBox.margin>
+<Insets />
+</HBox.margin></RadioButton><TextField fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS" /><Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
 </children></HBox>
 </content>
 </TitledPane><TableView fx:id="tblMain" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

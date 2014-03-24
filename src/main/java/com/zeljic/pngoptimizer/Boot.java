@@ -14,6 +14,8 @@ public class Boot extends Application
 		Loader loader = Loader.setInstance("Boot", stage, getClass().getResource("/fxml/Boot.fxml"));
 		stage.setScene(loader.getScene());
 		stage.setTitle("PNG Optimizer");
+		stage.setMinWidth(600);
+		stage.setMinHeight(400);
 		
 		stage.show();
 	}
