@@ -7,15 +7,15 @@
 
 <AnchorPane fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
 <children><VBox layoutX="130.0" layoutY="84.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-<children><TitledPane collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
+<children><TitledPane fx:id="tlpSelect" collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
 <content><HBox alignment="CENTER_LEFT" minHeight="-Infinity" spacing="8.0">
 <children><RadioButton fx:id="rbTypeFiles" mnemonicParsing="false" selected="true" text="Files">
-<toggleGroup>
-<ToggleGroup />
-</toggleGroup>
 <HBox.margin>
 <Insets />
 </HBox.margin>
+<toggleGroup>
+<ToggleGroup fx:id="type_group" />
+</toggleGroup>
 </RadioButton><RadioButton fx:id="rbTypeDirectory" mnemonicParsing="false" text="Directory" toggleGroup="$type_group">
 <HBox.margin>
 <Insets />
@@ -30,7 +30,7 @@
 </TableView><HBox alignment="CENTER_RIGHT" spacing="8.0" VBox.vgrow="NEVER">
 <children><Button fx:id="btnOptimize" mnemonicParsing="false" text="Optimize" /><Button fx:id="btnCancel" disable="true" mnemonicParsing="false" text="Cancel" />
 </children></HBox><Separator prefWidth="200.0" VBox.vgrow="NEVER" /><HBox VBox.vgrow="NEVER">
-<children><Label text="Welcome to PNG Optimizer" HBox.hgrow="SOMETIMES" /><Pane HBox.hgrow="ALWAYS" /><ProgressBar fx:id="pbMain" disable="true" prefWidth="200.0" progress="0.0" HBox.hgrow="SOMETIMES" />
+<children><Label fx:id="lblInfo" text="Welcome to PNG Optimizer" HBox.hgrow="SOMETIMES" /><Pane HBox.hgrow="ALWAYS" /><ProgressBar fx:id="pbMain" disable="true" prefWidth="200.0" progress="0.0" HBox.hgrow="SOMETIMES" />
 </children></HBox>
 </children></VBox>
 </children>
