@@ -54,12 +54,14 @@ public class BootController implements Initializable
 	private void btnFilesOnAction(ActionEvent e)
 	{
 	    btnFiles.setSelected(true);
+	    tlpSelect.setText("Files");
 	}
 
 	@FXML
 	private void btnDirectoryOnAction(ActionEvent e)
 	{
 		btnDirectory.setSelected(true);
+		tlpSelect.setText("Directory");
 	}
 
 }
