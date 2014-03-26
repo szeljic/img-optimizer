@@ -10,7 +10,7 @@
 <children><VBox layoutX="130.0" layoutY="84.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <children><TitledPane fx:id="tlpSelect" collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
 <content><HBox alignment="CENTER_LEFT" minHeight="-Infinity">
-<children><ToggleButton fx:id="btnFiles" mnemonicParsing="false" prefHeight="25.0" selected="true">
+<children><ToggleButton fx:id="btnFiles" mnemonicParsing="false" onAction="#btnFilesOnAction" prefHeight="25.0" selected="true">
 <HBox.margin>
 <Insets />
 </HBox.margin>
@@ -21,7 +21,9 @@
 <image>
 <Image url="@../gfx/ico-files.png" />
 </image></ImageView>
-</graphic></ToggleButton><ToggleButton id="btnDirectory" fx:id="btnDirectory" mnemonicParsing="false" prefHeight="25.0" toggleGroup="$tgType">
+</graphic>
+<tooltip><Tooltip text="Select files" />
+</tooltip></ToggleButton><ToggleButton id="btnDirectory" fx:id="btnDirectory" mnemonicParsing="false" onAction="#btnDirectoryOnAction" prefHeight="25.0" toggleGroup="$tgType">
 <HBox.margin>
 <Insets />
 </HBox.margin>
@@ -29,7 +31,9 @@
 <image>
 <Image url="@../gfx/ico-dir.png" />
 </image></ImageView>
-</graphic></ToggleButton><TextField id="txtLocation" fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS">
+</graphic>
+<tooltip><Tooltip text="Select Directory" />
+</tooltip></ToggleButton><TextField id="txtLocation" fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS">
 <HBox.margin>
 <Insets />
 </HBox.margin></TextField><Button id="btnBrowse" fx:id="btnBrowse" mnemonicParsing="false" text="Browse">
@@ -44,7 +48,7 @@
     <TableColumn prefWidth="540.0" text="Name" /><TableColumn minWidth="100.0" prefWidth="100.0" resizable="false" text="Size" /><TableColumn minWidth="100.0" prefWidth="100.0" resizable="false" text="Status" />
   </columns>
 </TableView><HBox alignment="CENTER_RIGHT" spacing="8.0" VBox.vgrow="NEVER">
-<children><Button fx:id="btnOptimize" mnemonicParsing="false" text="Optimize" /><Button fx:id="btnCancel" disable="true" mnemonicParsing="false" text="Cancel" />
+<children><Button fx:id="btnOptimize" mnemonicParsing="false" text="Optimize" /><Button fx:id="btnCancel" disable="true" mnemonicParsing="false" onAction="#btnFilesOnAction" text="Cancel" />
 </children></HBox><Separator prefWidth="200.0" VBox.vgrow="NEVER" /><HBox VBox.vgrow="NEVER">
 <children><Label fx:id="lblInfo" text="Welcome to PNG Optimizer" HBox.hgrow="SOMETIMES" /><Pane HBox.hgrow="ALWAYS" /><ProgressBar fx:id="pbMain" disable="true" prefWidth="200.0" progress="0.0" HBox.hgrow="SOMETIMES" />
 </children></HBox>

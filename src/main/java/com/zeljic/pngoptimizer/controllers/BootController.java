@@ -3,6 +3,7 @@ package com.zeljic.pngoptimizer.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,37 +19,47 @@ import com.zeljic.pngoptimizer.imageitem.Item;
 
 public class BootController implements Initializable
 {
-	
+
 	@FXML
 	private ToggleButton btnFiles, btnDirectory;
-	
+
 	@FXML
 	private ToggleGroup tgType;
-	
+
 	@FXML
 	private TextField txtLocation;
-	
+
 	@FXML
 	private Button btnBrowse, btnOptimize, btnCancel;
-	
+
 	@FXML
 	private TableView<Item> tblMain;
-	
+
 	@FXML
 	private TitledPane tlpSelect;
-	
+
 	@FXML
 	private Label lblInfo;
-	
+
 	@FXML
 	private ProgressBar pbMain;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle)
 	{
-		
+
 	}
 
-	
-	
+	@FXML
+	private void btnFilesOnAction(ActionEvent e)
+	{
+
+	}
+
+	@FXML
+	private void btnDirectoryOnAction(ActionEvent e)
+	{
+
+	}
+
 }
