@@ -3,23 +3,39 @@
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
+<AnchorPane fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@../styles/boot.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
 <children><VBox layoutX="130.0" layoutY="84.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <children><TitledPane fx:id="tlpSelect" collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
-<content><HBox alignment="CENTER_LEFT" minHeight="-Infinity" spacing="8.0">
-<children><RadioButton fx:id="rbTypeFiles" mnemonicParsing="false" selected="true" text="Files">
+<content><HBox alignment="CENTER_LEFT" minHeight="-Infinity">
+<children><ToggleButton fx:id="btnFiles" mnemonicParsing="false" prefHeight="25.0" selected="true">
 <HBox.margin>
 <Insets />
 </HBox.margin>
 <toggleGroup>
-<ToggleGroup fx:id="type_group" />
+<ToggleGroup fx:id="tgType" />
 </toggleGroup>
-</RadioButton><RadioButton fx:id="rbTypeDirectory" mnemonicParsing="false" text="Directory" toggleGroup="$type_group">
+<graphic><ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../gfx/ico-files.png" />
+</image></ImageView>
+</graphic></ToggleButton><ToggleButton id="btnDirectory" fx:id="btnDirectory" mnemonicParsing="false" prefHeight="25.0" toggleGroup="$tgType">
 <HBox.margin>
 <Insets />
-</HBox.margin></RadioButton><TextField fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS" /><Button fx:id="btnBrowse" mnemonicParsing="false" text="Browse" />
+</HBox.margin>
+<graphic><ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../gfx/ico-dir.png" />
+</image></ImageView>
+</graphic></ToggleButton><TextField id="txtLocation" fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS">
+<HBox.margin>
+<Insets />
+</HBox.margin></TextField><Button id="btnBrowse" fx:id="btnBrowse" mnemonicParsing="false" text="Browse">
+<HBox.margin>
+<Insets />
+</HBox.margin></Button>
 </children></HBox>
 </content>
 </TitledPane><TableView fx:id="tblMain" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

@@ -1,0 +1,28 @@
+#txtLocation{
+	-fx-background-radius: 0;
+	-fx-background-insets: 0, 1 1 1 0;
+}
+
+#btnBrowse{
+	-fx-background-radius: 0 3 3 0, 0 3 3 0, 0 2 2 0, 0 1 1 0;
+	-fx-background-insets: 0 0 -1 0, 0, 1 1 1 0, 2 2 2 0;
+}
+
+#btnBrowse:focused{
+	-fx-background-radius: 0 3 3 0, 0 3 3 0, 0 2 2 0, 0 1 1 0;
+	-fx-background-insets: 0, 1 1 1 0, 2 2 2 0, 0, 2.6 2.6 2.6 0;
+}
+
+#btnDirectory{
+	-fx-background-insets: 0 0 -1 0, 0, 1 1 1 0, 2 2 2 0;
+	-fx-background-radius: 0;
+}
+
+#btnDirectory:focused{
+	-fx-background-insets: -0.2 -0.2 -0.2 0, 1 1 1 0, 2 2 2 0, -1.4 -1.4 -1.4 0, 2.6 2.6 2.6 0;
+	-fx-background-radius: 0;
+}
+
+#btnFiles{
+	-fx-background-radius: 3 0 0 3, 3 0 0 3, 2 0 0 2, 1 0 0 1;
+}
