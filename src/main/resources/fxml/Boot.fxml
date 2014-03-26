@@ -36,7 +36,7 @@
 </tooltip></ToggleButton><TextField id="txtLocation" fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS">
 <HBox.margin>
 <Insets />
-</HBox.margin></TextField><Button id="btnBrowse" fx:id="btnBrowse" mnemonicParsing="false" text="Browse">
+</HBox.margin></TextField><Button id="btnBrowse" fx:id="btnBrowse" mnemonicParsing="false" onAction="#btnBrowseOnAction" text="Browse">
 <HBox.margin>
 <Insets />
 </HBox.margin></Button>

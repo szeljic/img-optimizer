@@ -47,7 +47,7 @@ public class BootController implements Initializable
 	@Override
 	public void initialize(URL url, ResourceBundle bundle)
 	{
-		
+
 	}
 
 	@FXML
@@ -78,7 +78,12 @@ public class BootController implements Initializable
 			btnFiles.setSelected(true);
 			tlpSelect.setText("Select Files");
 		}
-		
+	}
+
+	@FXML
+	private void btnBrowseOnAction(ActionEvent e)
+	{
+
 	}
 
 }
