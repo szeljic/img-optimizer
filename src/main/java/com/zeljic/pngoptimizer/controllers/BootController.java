@@ -47,21 +47,38 @@ public class BootController implements Initializable
 	@Override
 	public void initialize(URL url, ResourceBundle bundle)
 	{
-
+		
 	}
 
 	@FXML
 	private void btnFilesOnAction(ActionEvent e)
 	{
-	    btnFiles.setSelected(true);
-	    tlpSelect.setText("Files");
+		if(tgType.getSelectedToggle() != null)
+		{
+			btnFiles.setSelected(true);
+			tlpSelect.setText("Select Files");
+		}
+		else
+		{
+			btnDirectory.setSelected(true);
+			tlpSelect.setText("Select Directory");
+		}
 	}
 
 	@FXML
 	private void btnDirectoryOnAction(ActionEvent e)
 	{
-		btnDirectory.setSelected(true);
-		tlpSelect.setText("Directory");
+		if(tgType.getSelectedToggle() != null)
+		{
+			btnDirectory.setSelected(true);
+			tlpSelect.setText("Select Directory");
+		}
+		else
+		{
+			btnFiles.setSelected(true);
+			tlpSelect.setText("Select Files");
+		}
+		
 	}
 
 }
