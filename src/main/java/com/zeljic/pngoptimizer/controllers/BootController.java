@@ -53,13 +53,13 @@ public class BootController implements Initializable
 	@FXML
 	private void btnFilesOnAction(ActionEvent e)
 	{
-
+	    btnFiles.setSelected(true);
 	}
 
 	@FXML
 	private void btnDirectoryOnAction(ActionEvent e)
 	{
-
+		btnDirectory.setSelected(true);
 	}
 
 }
