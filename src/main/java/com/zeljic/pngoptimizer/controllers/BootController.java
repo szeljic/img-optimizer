@@ -3,6 +3,7 @@ package com.zeljic.pngoptimizer.controllers;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 
 import com.zeljic.pngoptimizer.imageitem.Item;
 import com.zeljic.pngoptimizer.storage.Storage;
+import com.zeljic.pngoptimizer.uil.Loader;
 
 public class BootController implements Initializable
 {
@@ -90,34 +92,50 @@ public class BootController implements Initializable
 	@FXML
 	private void btnBrowseOnAction(ActionEvent e)
 	{
-		ArrayList<File> listOfFiles = new ArrayList<File>();
+		List<File> lof;
 		if(btnFiles.isSelected())
 		{
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Resource File");
-			try
-			{
-				listOfFiles = new ArrayList<File>(fileChooser.showOpenMultipleDialog(new Stage()));
-			}
-			catch(Exception ex)
-			{
-			}
+			fileChooser.getExtensionFilters().addAll(
+	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+	                new FileChooser.ExtensionFilter("PNG", "*.png"),
+	                new FileChooser.ExtensionFilter("BMP", "*.bmp"),
+	                new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
+	            );
+			lof = fileChooser.showOpenMultipleDialog(Loader.getInstance("Boot").getStage());
 		}
-		else{
+		else
+		{
 			DirectoryChooser directoryChooser = new DirectoryChooser();
 			directoryChooser.setTitle("Open Resource Directory");
-			try
+			File folder = directoryChooser.showDialog(Loader.getInstance("Boot").getStage());
+			File[] listOfFiles = folder.listFiles();
+			String name;
+			lof = new ArrayList<File>();
+			for(int i = 0; i < listOfFiles.length; i++)
 			{
-				listOfFiles.add(directoryChooser.showDialog(new Stage()));
-			}
-			catch(Exception ex)
-			{
+				if(listOfFiles[i].isFile())
+				{
+					name = listOfFiles[i].getName();
+					if(name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".bmp") || name.endsWith(".jpeg"))
+					{
+						lof.add(listOfFiles[i]);
+					}
+				}
 			}
 		}
-		ArrayList<String> listOfFilesPaths = new ArrayList<String>();
-		for(int i =0; i < listOfFiles.size(); i++)
+		ArrayList<String> listOfFilesPaths = new ArrayList<String>();		
+		if(lof != null)
 		{
-			listOfFilesPaths.add(listOfFiles.get(i).getPath());
+			for(int i = 0; i < lof.size(); i++)
+			{
+				listOfFilesPaths.add(lof.get(i).getAbsolutePath());
+			}
+		}
+		for(int i = 0; i < listOfFilesPaths.size(); i++)
+		{
+			System.out.println(listOfFilesPaths.get(i));
 		}
 		storedFilesPaths.setStoragedPaths(listOfFilesPaths);
 	}
