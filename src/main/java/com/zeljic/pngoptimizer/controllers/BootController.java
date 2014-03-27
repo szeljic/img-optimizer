@@ -1,6 +1,8 @@
 package com.zeljic.pngoptimizer.controllers;
 
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -14,11 +16,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import com.zeljic.pngoptimizer.imageitem.Item;
+import com.zeljic.pngoptimizer.storage.Storage;
 
 public class BootController implements Initializable
 {
+	private Storage storedFilesPaths = new Storage();
 
 	@FXML
 	private ToggleButton btnFiles, btnDirectory;
@@ -83,7 +90,36 @@ public class BootController implements Initializable
 	@FXML
 	private void btnBrowseOnAction(ActionEvent e)
 	{
-
+		ArrayList<File> listOfFiles = new ArrayList<File>();
+		if(btnFiles.isSelected())
+		{
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Open Resource File");
+			try
+			{
+				listOfFiles = new ArrayList<File>(fileChooser.showOpenMultipleDialog(new Stage()));
+			}
+			catch(Exception ex)
+			{
+			}
+		}
+		else{
+			DirectoryChooser directoryChooser = new DirectoryChooser();
+			directoryChooser.setTitle("Open Resource Directory");
+			try
+			{
+				listOfFiles.add(directoryChooser.showDialog(new Stage()));
+			}
+			catch(Exception ex)
+			{
+			}
+		}
+		ArrayList<String> listOfFilesPaths = new ArrayList<String>();
+		for(int i =0; i < listOfFiles.size(); i++)
+		{
+			listOfFilesPaths.add(listOfFiles.get(i).getPath());
+		}
+		storedFilesPaths.setStoragedPaths(listOfFilesPaths);
 	}
 
 }
