@@ -98,6 +98,7 @@ public class BootController implements Initializable
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Resource File");
 			fileChooser.getExtensionFilters().addAll(
+					new FileChooser.ExtensionFilter("All Images", "*.png", "*.jpg", "*.bmp", "*.jpeg"),
 	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
 	                new FileChooser.ExtensionFilter("PNG", "*.png"),
 	                new FileChooser.ExtensionFilter("BMP", "*.bmp"),
