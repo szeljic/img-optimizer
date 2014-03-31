@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@../styles/boot.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
+<AnchorPane id="apWrap" fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@../styles/boot.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.pngoptimizer.controllers.BootController">
 <children><VBox layoutX="130.0" layoutY="84.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <children><TitledPane fx:id="tlpSelect" collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
 <content><HBox alignment="CENTER_LEFT" minHeight="-Infinity">
@@ -44,8 +44,8 @@
 </content>
 </TitledPane><TableView fx:id="tblMain" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
   <columns>
-    <TableColumn minWidth="60.0" prefWidth="60.0" resizable="false" text="#" />
-    <TableColumn prefWidth="540.0" text="Name" /><TableColumn minWidth="100.0" prefWidth="100.0" resizable="false" text="Size" /><TableColumn minWidth="100.0" prefWidth="100.0" resizable="false" text="Status" />
+    <TableColumn fx:id="tbcHash" minWidth="60.0" prefWidth="60.0" resizable="false" text="#" />
+    <TableColumn fx:id="tbcName" prefWidth="540.0" text="Name" /><TableColumn fx:id="tbcSize" minWidth="100.0" prefWidth="100.0" resizable="false" text="Size" /><TableColumn fx:id="tbcStatus" minWidth="100.0" prefWidth="100.0" resizable="false" text="Status" />
   </columns>
 </TableView><HBox alignment="CENTER_RIGHT" spacing="8.0" VBox.vgrow="NEVER">
 <children><Button fx:id="btnOptimize" mnemonicParsing="false" text="Optimize" /><Button fx:id="btnCancel" disable="true" mnemonicParsing="false" onAction="#btnFilesOnAction" text="Cancel" />
