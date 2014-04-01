@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.zeljic.imgoptimizer.storage.Item;
@@ -100,26 +101,38 @@ public class BootController implements Initializable
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Resource File");
 			fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.jpg", "*.jpeg", "*.png", "*.bmp"));
-			fileChooser.showOpenMultipleDialog(Loader.getInstance("Boot").getStage()).parallelStream().forEach(f -> tmpStorage.addItem(new Item(f)));
+			List<File> fcResult = fileChooser.showOpenMultipleDialog(Loader.getInstance("Boot").getStage());
+
+			if (fcResult != null)
+			{
+				Storage.getInstance().clearStorage();
+				fcResult.parallelStream().forEach(f -> tmpStorage.addItem(new Item(f)));
+			}
 		} else
 		{
 			DirectoryChooser directoryChooser = new DirectoryChooser();
 			directoryChooser.setTitle("Open Resource Directory");
 			File folder = directoryChooser.showDialog(Loader.getInstance("Boot").getStage());
 
-			ArrayList<String> allowed = new ArrayList<>(Arrays.asList(".jpg", ".jpeg", ".png", ".bmp"));
+			ArrayList<String> allowed = new ArrayList<String>(Arrays.asList(".jpg", ".jpeg", ".png", ".bmp"));
 
-			Arrays.asList(folder.listFiles(new FilenameFilter() {
-				@Override
-				public boolean accept(File dir, String name)
-				{
-					for (String ext : allowed)
-						if (name.endsWith(ext))
-							return true;
+			if (folder != null)
+			{
+				Storage.getInstance().clearStorage();
+				Arrays.asList(folder.listFiles(new FilenameFilter() {
+					@Override
+					public boolean accept(File dir, String name)
+					{
+						for (String ext : allowed)
+							if (name.endsWith(ext))
+								return true;
 
-					return false;
-				}
-			})).parallelStream().forEach(f -> tmpStorage.addItem(new Item(f)));
+						return false;
+					}
+				})).parallelStream().forEach(f -> tmpStorage.addItem(new Item(f)));
+			}
 		}
+
+		System.out.println(Storage.getInstance().getStoragedPaths().size());
 	}
 }
