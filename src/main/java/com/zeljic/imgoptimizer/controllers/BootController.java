@@ -1,4 +1,4 @@
-package com.zeljic.pngoptimizer.controllers;
+package com.zeljic.imgoptimizer.controllers;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -6,6 +6,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+
+import com.zeljic.imgoptimizer.storage.Item;
+import com.zeljic.imgoptimizer.storage.Storage;
+import com.zeljic.imgoptimizer.uil.Loader;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,10 +25,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-
-import com.zeljic.pngoptimizer.storage.Item;
-import com.zeljic.pngoptimizer.storage.Storage;
-import com.zeljic.pngoptimizer.uil.Loader;
 
 public class BootController implements Initializable
 {

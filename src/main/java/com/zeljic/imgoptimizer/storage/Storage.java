@@ -1,4 +1,4 @@
-package com.zeljic.pngoptimizer.storage;
+package com.zeljic.imgoptimizer.storage;
 
 import java.util.ArrayList;
 

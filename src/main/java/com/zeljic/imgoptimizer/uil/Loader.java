@@ -1,4 +1,4 @@
-package com.zeljic.pngoptimizer.uil;
+package com.zeljic.imgoptimizer.uil;
 
 import java.io.IOException;
 import java.net.URL;
