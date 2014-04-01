@@ -5,8 +5,8 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>com.zeljic.pngoptimizer</groupId>
-	<artifactId>png-optimizer</artifactId>
+	<groupId>com.zeljic.imgoptimizer</groupId>
+	<artifactId>img-optimizer</artifactId>
 	<name>${v.projectname}</name>
 	
 	<packaging>jar</packaging>
