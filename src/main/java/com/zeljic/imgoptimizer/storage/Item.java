@@ -2,36 +2,83 @@ package com.zeljic.imgoptimizer.storage;
 
 import java.io.File;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+import com.zeljic.imgoptimizer.storage.TypeItem.Type;
+import com.zeljic.imgoptimizer.utils.FileUtils;
+
 public class Item
 {
-	private String path;
-	private File file;
-	private long size;
+	private StringProperty pathProperty;
+	private LongProperty sizeProperty;
+	private ObjectProperty<Type> fileTypeProperty;
+	private ObjectProperty<File> fileProperty;
+	private BooleanProperty checked;
+	private ObjectProperty<Item> instance;
 
 	public Item(File file)
 	{
-		this.file = file;
-		this.path = file.getAbsolutePath();
-		this.size = file.length();
+		getFileProperty().set(file);
+		getPathProperty().set(file.getAbsolutePath());
+		getSizeProperty().set(file.length());
+		getFileTypeProperty().set(FileUtils.getExtension(getPathProperty().get()));
+		getCheckProperty().set(true);
+
+		getItemProperty().set(this);
 	}
 
-	public String getPath()
+	public StringProperty getPathProperty()
 	{
-		return path;
+		if (pathProperty == null)
+			pathProperty = new SimpleStringProperty();
+
+		return pathProperty;
 	}
 
-	public long getSize()
+	public LongProperty getSizeProperty()
 	{
-		return size;
+		if (sizeProperty == null)
+			sizeProperty = new SimpleLongProperty();
+
+		return sizeProperty;
 	}
 
-	public void setFile(File file)
+	public ObjectProperty<Type> getFileTypeProperty()
 	{
-		this.file = file;
+		if (fileTypeProperty == null)
+			fileTypeProperty = new SimpleObjectProperty<Type>();
+
+		return fileTypeProperty;
 	}
 
-	public File getFile()
+	public ObjectProperty<File> getFileProperty()
 	{
-		return file;
+		if (fileProperty == null)
+			fileProperty = new SimpleObjectProperty<File>();
+
+		return fileProperty;
+	}
+
+	public ObjectProperty<Item> getItemProperty()
+	{
+		if (instance == null)
+			instance = new SimpleObjectProperty<>();
+
+		return instance;
+	}
+
+	public BooleanProperty getCheckProperty()
+	{
+		if (checked == null)
+			checked = new SimpleBooleanProperty();
+
+		return checked;
 	}
 }

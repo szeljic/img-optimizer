@@ -8,24 +8,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.zeljic.imgoptimizer.storage.Item;
-import com.zeljic.imgoptimizer.storage.Storage;
-import com.zeljic.imgoptimizer.uil.Loader;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
+
+import com.zeljic.imgoptimizer.storage.Item;
+import com.zeljic.imgoptimizer.storage.Storage;
+import com.zeljic.imgoptimizer.uil.Loader;
 
 public class BootController implements Initializable
 {
@@ -40,7 +46,8 @@ public class BootController implements Initializable
 	private TextField txtLocation;
 
 	@FXML
-	private Button btnBrowse, btnOptimize, btnCancel;
+	private Button btnBrowse, btnOptimize, btnCancel, btnAll, btnNone,
+			btnInverse;
 
 	@FXML
 	private TableView<Item> tblMain;
@@ -55,12 +62,18 @@ public class BootController implements Initializable
 	private ProgressBar pbMain;
 
 	@FXML
-	private TableColumn<Item, String> tbcHash, tbcName, tbcSize, tbcStatus;
+	private TableColumn<Item, String> tbcName, tbcSize, tbcStatus;
+
+	@FXML
+	private TableColumn<Item, Item> tbcType;
+
+	@FXML
+	private TableColumn<Item, Boolean> tbcHash;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle)
 	{
-
+		prepareTblMain();
 	}
 
 	@FXML
@@ -133,6 +146,79 @@ public class BootController implements Initializable
 			}
 		}
 
-		System.out.println(Storage.getInstance().getStoragedPaths().size());
+		tblMain.setItems(Storage.getInstance().getObservableList());
+	}
+
+	@FXML
+	private void btnAllOnAction(ActionEvent e)
+	{
+		tblMain.getItems().forEach(item -> item.getCheckProperty().set(true));
+		e.consume();
+	}
+
+	@FXML
+	private void btnNoneOnAction(ActionEvent e)
+	{
+		tblMain.getItems().forEach(item -> item.getCheckProperty().set(false));
+		e.consume();
+	}
+
+	@FXML
+	private void btnInverseOnAction(ActionEvent e)
+	{
+		tblMain.getItems().forEach(item -> item.getCheckProperty().set(!item.getCheckProperty().get()));
+		e.consume();
+	}
+
+	private void prepareTblMain()
+	{
+		tbcName.setCellValueFactory(item -> item.getValue().getPathProperty());
+		tbcSize.setCellValueFactory(item -> item.getValue().getSizeProperty().asString());
+		tbcType.setCellValueFactory(item -> item.getValue().getItemProperty());
+
+		tbcHash.setCellValueFactory(item -> item.getValue().getCheckProperty());
+		tbcHash.setCellFactory(CheckBoxTableCell.forTableColumn(tbcHash));
+
+		tbcType.setCellFactory(new Callback<TableColumn<Item, Item>, TableCell<Item, Item>>() {
+
+			@Override
+			public TableCell<Item, Item> call(TableColumn<Item, Item> column)
+			{
+				TableCell<Item, Item> cell = new TableCell<Item, Item>() {
+					@Override
+					protected void updateItem(Item item, boolean empty)
+					{
+						if (empty)
+							return;
+
+						String path = "";
+
+						switch (item.getFileTypeProperty().get()) {
+						case JPG:
+						case JPEG:
+							path = "/gfx/ico-jpg.png";
+							break;
+
+						case PNG:
+							path = "/gfx/ico-png.png";
+							break;
+
+						case BMP:
+							path = "/gfx/ico-bmp.png";
+
+						default:
+							path = "/gfx/ico-unknown.png";
+							break;
+						}
+
+						setGraphic(new ImageView(new Image(getClass().getResourceAsStream(path))));
+					};
+				};
+
+				cell.setAlignment(Pos.CENTER);
+
+				return cell;
+			}
+		});
 	}
 }

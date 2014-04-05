@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="apWrap" fx:id="apWrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="400.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@../styles/boot.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeljic.imgoptimizer.controllers.BootController">
-<children><VBox layoutX="130.0" layoutY="84.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<children><VBox layoutX="26.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 <children><TitledPane fx:id="tlpSelect" collapsible="false" minHeight="-Infinity" text="Select Files" VBox.vgrow="NEVER">
 <content><HBox alignment="CENTER_LEFT" minHeight="-Infinity">
 <children><ToggleButton fx:id="btnFiles" mnemonicParsing="false" onAction="#btnFilesOnAction" prefHeight="25.0" selected="true">
@@ -33,19 +33,39 @@
 </image></ImageView>
 </graphic>
 <tooltip><Tooltip text="Select Directory" />
-</tooltip></ToggleButton><TextField id="txtLocation" fx:id="txtLocation" editable="false" promptText="Select files or folder" HBox.hgrow="ALWAYS">
+</tooltip></ToggleButton><TextField id="txtLocation" fx:id="txtLocation" editable="false" focusTraversable="false" promptText="Select files or directory" styleClass="txtLocation" HBox.hgrow="ALWAYS">
 <HBox.margin>
 <Insets />
-</HBox.margin></TextField><Button id="btnBrowse" fx:id="btnBrowse" mnemonicParsing="false" onAction="#btnBrowseOnAction" text="Browse">
+</HBox.margin></TextField><Button id="btnBrowse" fx:id="btnBrowse" mnemonicParsing="false" onAction="#btnBrowseOnAction" styleClass="btnBrowse" text="Browse">
 <HBox.margin>
 <Insets />
 </HBox.margin></Button>
 </children></HBox>
 </content>
-</TitledPane><TableView fx:id="tblMain" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+</TitledPane><TitledPane collapsible="false" minHeight="-Infinity" text="Output Directory">
+<content>
+<HBox alignment="CENTER_LEFT" minHeight="-Infinity">
+<children>
+<TextField id="txtLocation" fx:id="txtOutputDirectory" editable="false" promptText="Select output directory" styleClass="txtDLocation" HBox.hgrow="ALWAYS">
+<HBox.margin>
+<Insets />
+</HBox.margin>
+</TextField>
+<Button id="btnBrowse" fx:id="btnBrowseOutput" mnemonicParsing="false" styleClass="btnBrowse" text="Browse">
+<HBox.margin>
+<Insets />
+</HBox.margin>
+</Button>
+</children>
+</HBox>
+</content>
+</TitledPane><HBox spacing="8.0">
+<children><Button fx:id="btnAll" mnemonicParsing="false" onAction="#btnAllOnAction" text="All" /><Button fx:id="btnNone" mnemonicParsing="false" onAction="#btnNoneOnAction" text="None" /><Button fx:id="btnInverse" mnemonicParsing="false" onAction="#btnInverseOnAction" text="Inverse" />
+</children></HBox><TableView fx:id="tblMain" editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
   <columns>
-    <TableColumn fx:id="tbcHash" minWidth="60.0" prefWidth="60.0" resizable="false" text="#" />
-    <TableColumn fx:id="tbcName" prefWidth="540.0" text="Name" /><TableColumn fx:id="tbcSize" minWidth="100.0" prefWidth="100.0" resizable="false" text="Size" /><TableColumn fx:id="tbcStatus" minWidth="100.0" prefWidth="100.0" resizable="false" text="Status" />
+    <TableColumn fx:id="tbcHash" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="#" />
+<TableColumn fx:id="tbcType" editable="false" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" resizable="false" text="Type" />
+    <TableColumn fx:id="tbcName" editable="false" minWidth="300.0" text="Name" /><TableColumn fx:id="tbcSize" editable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Size" /><TableColumn fx:id="tbcStatus" editable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Status" />
   </columns>
 </TableView><HBox alignment="CENTER_RIGHT" spacing="8.0" VBox.vgrow="NEVER">
 <children><Button fx:id="btnOptimize" mnemonicParsing="false" text="Optimize" /><Button fx:id="btnCancel" disable="true" mnemonicParsing="false" onAction="#btnFilesOnAction" text="Cancel" />
