@@ -150,7 +150,7 @@ public class BootController implements Initializable
 			}
 		}
 
-		tblMain.setItems(Storage.getInstance().getObservableList());
+		tblMain.setItems(tmpStorage.getObservableList());
 	}
 
 	@FXML
@@ -197,7 +197,10 @@ public class BootController implements Initializable
 					protected void updateItem(Item item, boolean empty)
 					{
 						if (empty)
+						{
+							setGraphic(null);
 							return;
+						}
 
 						String path = "";
 
