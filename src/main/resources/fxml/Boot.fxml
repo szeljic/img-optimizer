@@ -60,7 +60,7 @@
 </HBox>
 </content>
 </TitledPane><HBox spacing="8.0">
-<children><Button fx:id="btnAll" mnemonicParsing="false" onAction="#btnAllOnAction" text="All" /><Button fx:id="btnNone" mnemonicParsing="false" onAction="#btnNoneOnAction" text="None" /><Button fx:id="btnInverse" mnemonicParsing="false" onAction="#btnInverseOnAction" text="Inverse" />
+<children><Button fx:id="btnAll" mnemonicParsing="false" onAction="#btnAllOnAction" text="All" /><Button fx:id="btnNone" mnemonicParsing="false" onAction="#btnNoneOnAction" text="None" /><Button fx:id="btnInverse" mnemonicParsing="false" onAction="#btnInverseOnAction" text="Inverse" /><Pane HBox.hgrow="ALWAYS" /><Button fx:id="btnClearAll" mnemonicParsing="false" onAction="#btnClearAllOnAction" text="Clear All" />
 </children></HBox><TableView fx:id="tblMain" editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
   <columns>
     <TableColumn fx:id="tbcHash" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="#" />

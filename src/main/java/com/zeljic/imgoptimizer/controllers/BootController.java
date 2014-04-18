@@ -47,7 +47,7 @@ public class BootController implements Initializable
 
 	@FXML
 	private Button btnBrowse, btnOptimize, btnCancel, btnAll, btnNone,
-			btnInverse;
+			btnInverse, btnClearAll;
 
 	@FXML
 	private TableView<Item> tblMain;
@@ -157,21 +157,25 @@ public class BootController implements Initializable
 	private void btnAllOnAction(ActionEvent e)
 	{
 		tblMain.getItems().forEach(item -> item.getCheckProperty().set(true));
-		e.consume();
 	}
 
 	@FXML
 	private void btnNoneOnAction(ActionEvent e)
 	{
 		tblMain.getItems().forEach(item -> item.getCheckProperty().set(false));
-		e.consume();
 	}
 
 	@FXML
 	private void btnInverseOnAction(ActionEvent e)
 	{
 		tblMain.getItems().forEach(item -> item.getCheckProperty().set(!item.getCheckProperty().get()));
-		e.consume();
+	}
+
+	@FXML
+	private void btnClearAllOnAction(ActionEvent e)
+	{
+		Storage.getInstance().getObservableList().clear();
+		tblMain.getItems().clear();
 	}
 
 	private void prepareTblMain()
