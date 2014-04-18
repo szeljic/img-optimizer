@@ -116,10 +116,12 @@ public class BootController implements Initializable
 			fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.jpg", "*.jpeg", "*.png", "*.bmp"));
 			List<File> fcResult = fileChooser.showOpenMultipleDialog(Loader.getInstance("Boot").getStage());
 
-			if (fcResult != null)
+			if (fcResult != null && fcResult.size() > 0)
 			{
 				Storage.getInstance().clearStorage();
 				fcResult.parallelStream().forEach(f -> tmpStorage.addItem(new Item(f)));
+
+				txtLocation.setText(fcResult.get(0).getParentFile().getAbsolutePath());
 			}
 		} else
 		{
@@ -143,6 +145,8 @@ public class BootController implements Initializable
 						return false;
 					}
 				})).parallelStream().forEach(f -> tmpStorage.addItem(new Item(f)));
+
+				txtLocation.setText(folder.getAbsolutePath());
 			}
 		}
 

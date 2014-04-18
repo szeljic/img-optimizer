@@ -28,7 +28,7 @@ public class Item
 		getFileProperty().set(file);
 		getPathProperty().set(file.getAbsolutePath());
 		getSizeProperty().set(file.length());
-		getFileTypeProperty().set(FileUtils.getExtension(getPathProperty().get()));
+		getFileTypeProperty().set(FileUtils.getTypeByName(getPathProperty().get()));
 		getCheckProperty().set(true);
 
 		getItemProperty().set(this);

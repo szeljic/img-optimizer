@@ -4,7 +4,7 @@ import com.zeljic.imgoptimizer.storage.TypeItem.Type;
 
 public class FileUtils
 {
-	public static Type getExtension(String name)
+	public static Type getTypeByName(String name)
 	{
 		int idx = name.lastIndexOf(".");
 		String strExt = (idx == -1 ? null : name.substring(idx + 1, name.length())).toLowerCase();
