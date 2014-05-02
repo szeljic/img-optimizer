@@ -30,8 +30,10 @@ import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 import com.zeljic.imgoptimizer.storage.Item;
+import com.zeljic.imgoptimizer.storage.Output;
 import com.zeljic.imgoptimizer.storage.Storage;
 import com.zeljic.imgoptimizer.uil.Loader;
+import com.zeljic.imgoptimizer.utils.NumberUtils;
 
 public class BootController implements Initializable
 {
@@ -43,11 +45,10 @@ public class BootController implements Initializable
 	private ToggleGroup tgType;
 
 	@FXML
-	private TextField txtLocation;
+	private TextField txtLocation, txtOutputDirectory;
 
 	@FXML
-	private Button btnBrowse, btnOptimize, btnCancel, btnAll, btnNone,
-			btnInverse, btnClearAll;
+	private Button btnBrowse, btnOptimize, btnCancel, btnAll, btnNone, btnInverse, btnClearAll, btnBrowseOutput;
 
 	@FXML
 	private TableView<Item> tblMain;
@@ -62,13 +63,16 @@ public class BootController implements Initializable
 	private ProgressBar pbMain;
 
 	@FXML
-	private TableColumn<Item, String> tbcName, tbcSize, tbcStatus;
+	private TableColumn<Item, String> tbcName, tbcStatus;
 
 	@FXML
 	private TableColumn<Item, Item> tbcType;
 
 	@FXML
 	private TableColumn<Item, Boolean> tbcHash;
+
+	@FXML
+	private TableColumn<Item, Long> tbcSize;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle)
@@ -174,18 +178,59 @@ public class BootController implements Initializable
 	@FXML
 	private void btnClearAllOnAction(ActionEvent e)
 	{
-		Storage.getInstance().getObservableList().clear();
+		Storage.getInstance().clearStorage();
 		tblMain.getItems().clear();
+	}
+
+	@FXML
+	private void btnBrowseOutputOnAction(ActionEvent e)
+	{
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Open Resource Directory");
+		File folder = directoryChooser.showDialog(Loader.getInstance("Boot").getStage());
+
+		if (folder != null && folder.isDirectory())
+		{
+			Output.outputDir = folder;
+			txtOutputDirectory.setText( folder.getAbsolutePath() );
+		}
 	}
 
 	private void prepareTblMain()
 	{
 		tbcName.setCellValueFactory(item -> item.getValue().getPathProperty());
-		tbcSize.setCellValueFactory(item -> item.getValue().getSizeProperty().asString());
+		tbcSize.setCellValueFactory(item -> item.getValue().getSizeProperty().asObject());
 		tbcType.setCellValueFactory(item -> item.getValue().getItemProperty());
 
 		tbcHash.setCellValueFactory(item -> item.getValue().getCheckProperty());
 		tbcHash.setCellFactory(CheckBoxTableCell.forTableColumn(tbcHash));
+
+		tbcSize.setCellFactory(new Callback<TableColumn<Item,Long>, TableCell<Item,Long>>() {
+
+			@Override
+			public TableCell<Item, Long> call(TableColumn<Item, Long> column)
+			{
+				TableCell<Item, Long> cell = new TableCell<Item, Long>(){
+					@Override
+					protected void updateItem(Long value, boolean empty)
+					{
+						if(empty)
+						{
+							super.updateItem(value, empty);
+							return;
+						}
+
+						setGraphic(new Label( NumberUtils.readableFileSize(value) ));
+
+						super.updateItem(value, empty);
+					}
+				};
+
+				cell.setAlignment(Pos.CENTER_RIGHT);
+
+				return cell;
+			}
+		});
 
 		tbcType.setCellFactory(new Callback<TableColumn<Item, Item>, TableCell<Item, Item>>() {
 

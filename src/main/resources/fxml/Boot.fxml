@@ -51,7 +51,7 @@
 <Insets />
 </HBox.margin>
 </TextField>
-<Button id="btnBrowse" fx:id="btnBrowseOutput" mnemonicParsing="false" styleClass="btnBrowse" text="Browse">
+<Button id="btnBrowse" fx:id="btnBrowseOutput" mnemonicParsing="false" onAction="#btnBrowseOutputOnAction" styleClass="btnBrowse" text="Browse">
 <HBox.margin>
 <Insets />
 </HBox.margin>

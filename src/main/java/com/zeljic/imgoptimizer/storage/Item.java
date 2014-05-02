@@ -13,11 +13,13 @@ import javafx.beans.property.StringProperty;
 
 import com.zeljic.imgoptimizer.storage.TypeItem.Type;
 import com.zeljic.imgoptimizer.utils.FileUtils;
+import com.zeljic.imgoptimizer.utils.NumberUtils;
 
 public class Item
 {
 	private StringProperty pathProperty;
 	private LongProperty sizeProperty;
+	private StringProperty readableSizeProperty;
 	private ObjectProperty<Type> fileTypeProperty;
 	private ObjectProperty<File> fileProperty;
 	private BooleanProperty checked;
@@ -28,6 +30,7 @@ public class Item
 		getFileProperty().set(file);
 		getPathProperty().set(file.getAbsolutePath());
 		getSizeProperty().set(file.length());
+		getReadableSizeProperty().set( NumberUtils.readableFileSize(getSizeProperty().get()) );
 		getFileTypeProperty().set(FileUtils.getTypeByName(getPathProperty().get()));
 		getCheckProperty().set(true);
 
@@ -48,6 +51,14 @@ public class Item
 			sizeProperty = new SimpleLongProperty();
 
 		return sizeProperty;
+	}
+
+	public StringProperty getReadableSizeProperty()
+	{
+		if(readableSizeProperty == null)
+			readableSizeProperty = new SimpleStringProperty();
+
+		return readableSizeProperty;
 	}
 
 	public ObjectProperty<Type> getFileTypeProperty()
